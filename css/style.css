@@ -17,6 +17,8 @@ body {
 }
 .container {
   padding: 15vw 3vw 0;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 .container .search {
   position: fixed;
