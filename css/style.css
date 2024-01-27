@@ -46,6 +46,7 @@ body {
   height: 6vw;
   border-radius: 50%;
   display: none;
+  z-index: 2;
 }
 .container p.clear.active {
   display: block;
