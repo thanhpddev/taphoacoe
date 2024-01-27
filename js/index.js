@@ -41,7 +41,7 @@ $("body").on("input", "#search-box", function () {
 });
 
 $("body").on("click", "p.clear", function () {
-  $("#search-box").val("");
+  $("#search-box").val("").focus();
   $(".container p.clear").removeClass("active");
   $(".container .image-container > div").css({ display: "block" });
 });
