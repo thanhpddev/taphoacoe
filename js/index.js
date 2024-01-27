@@ -2,7 +2,7 @@ let searchBox = document.querySelector("#search-box");
 let images = document.querySelectorAll(".container .image-container .image");
 
 searchBox.oninput = () => {
-  $(".container p.clear").addClass("active");
+  $(".container .clear").addClass("active");
   images.forEach((hide) => (hide.style.display = "none"));
   let value = searchBox.value
     .normalize("NFD")
@@ -34,14 +34,14 @@ searchBox.oninput = () => {
 //clear input
 $("body").on("input", "#search-box", function () {
   if ($("#search-box").val()) {
-    $(".container p.clear").addClass("active");
+    $(".container .clear").addClass("active");
   } else {
-    $(".container p.clear").removeClass("active");
+    $(".container .clear").removeClass("active");
   }
 });
 
-$("body").on("click", "p.clear", function () {
+$("body").on("click", ".clear", function () {
   $("#search-box").val("").focus();
-  $(".container p.clear").removeClass("active");
+  $(".container .clear").removeClass("active");
   $(".container .image-container > div").css({ display: "block" });
 });

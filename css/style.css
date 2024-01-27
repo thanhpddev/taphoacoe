@@ -35,7 +35,8 @@ body {
   padding: 3vw 12vw 3vw 3vw;
   font-size: 5.5vw;
 }
-.container input.clear {
+
+.container .clear {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -48,10 +49,11 @@ body {
   display: none;
   z-index: 2;
 }
-.container input.clear.active {
+.container .clear.active {
   display: block;
 }
-.container input.clear::before {
+
+.container .clear::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -61,7 +63,7 @@ body {
   height: 60%;
   background: #fff;
 }
-.container input.clear::after {
+.container .clear::after {
   content: "";
   position: absolute;
   top: 50%;
