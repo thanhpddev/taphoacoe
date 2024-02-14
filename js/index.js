@@ -2,6 +2,7 @@ let searchBox = document.querySelector("#search-box");
 let images = document.querySelectorAll(".container .image-container .image");
 
 searchBox.oninput = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
   $(".container .clear").addClass("active");
   images.forEach((hide) => (hide.style.display = "none"));
   let value = searchBox.value
@@ -41,7 +42,13 @@ $("body").on("input", "#search-box", function () {
 });
 
 $("body").on("click", ".clear", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
   $("#search-box").val("").focus();
   $(".container .clear").removeClass("active");
   $(".container .image-container > div").css({ display: "block" });
 });
+
+// //scroll top smooth
+// $("#search-box").on("change", function () {
+//   alert("Handler for `change` called.");
+// });
