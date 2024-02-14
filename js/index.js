@@ -47,8 +47,3 @@ $("body").on("click", ".clear", function () {
   $(".container .clear").removeClass("active");
   $(".container .image-container > div").css({ display: "block" });
 });
-
-// //scroll top smooth
-// $("#search-box").on("change", function () {
-//   alert("Handler for `change` called.");
-// });

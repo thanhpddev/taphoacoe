@@ -108,6 +108,11 @@ body {
   font-size: 5.5vw;
   margin-bottom: 1vw;
 }
+.container .image-container .image h4 {
+  font-size: 5.5vw;
+  margin-bottom: 1vw;
+  color: #0006ff;
+}
 
 .container .image-container .image p.price {
   font-size: 5.5vw;
