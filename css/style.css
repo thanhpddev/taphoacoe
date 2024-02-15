@@ -127,6 +127,7 @@ body {
   background: rgba(191, 16, 16, 0.8);
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0px 0px 11px #000;
 }
 .back-to-top {
   right: 3vw;
