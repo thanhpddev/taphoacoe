@@ -47,3 +47,12 @@ $("body").on("click", ".clear", function () {
   $(".container .clear").removeClass("active");
   $(".container .image-container > div").css({ display: "block" });
 });
+
+$("body").on("click", ".back-to-top", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+$("body").on("click", ".back-to-bottom", function () {
+  $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  return false;
+});
