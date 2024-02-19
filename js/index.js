@@ -5,19 +5,21 @@ searchBox.oninput = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
   $(".container .clear").addClass("active");
   images.forEach((hide) => (hide.style.display = "none"));
-  let value = searchBox.value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/g, "d")
-    .replace(/Đ/g, "D");
+  let value = searchBox.value;
+  // let value = searchBox.value
+  //   .normalize("NFD")
+  //   .replace(/[\u0300-\u036f]/g, "")
+  //   .replace(/đ/g, "d")
+  //   .replace(/Đ/g, "D");
 
   images.forEach((filter) => {
-    let title = filter
-      .getAttribute("data-title")
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/đ/g, "d")
-      .replace(/Đ/g, "D");
+    let title = filter.getAttribute("data-title");
+    // let title = filter
+    // .getAttribute("data-title")
+    // .normalize("NFD")
+    // .replace(/[\u0300-\u036f]/g, "")
+    // .replace(/đ/g, "d")
+    // .replace(/Đ/g, "D");
     if (
       value
         .toLowerCase()
