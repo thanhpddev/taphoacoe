@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Lazy load video khi scroll vào viewport
+// Lazy play video khi scroll - Tối ưu cho mobile
 document.addEventListener("DOMContentLoaded", () => {
   const videos = document.querySelectorAll("video");
 
@@ -64,32 +64,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const video = entry.target;
 
         if (entry.isIntersecting) {
-          // Video vào viewport → play
-          video.play().catch((err) => {
-            console.log("Không thể play video:", err);
+          // Thử play
+          video.play().catch(() => {
+            // Nếu không play được (do policy), chờ user chạm
+            console.log("Video chờ tương tác người dùng");
           });
         } else {
-          // Video ra khỏi viewport → pause
           video.pause();
         }
       });
     },
     {
-      threshold: 0.5, // 50% video phải hiện mới play
-      rootMargin: "0px 0px -10% 0px", // cho phép play sớm một chút
+      threshold: 0.4, // Giảm ngưỡng cho mobile
+      rootMargin: "-50px 0px -100px 0px",
     },
   );
 
   videos.forEach((video) => {
     observer.observe(video);
 
-    // Thêm sự kiện click để người dùng có thể play/pause thủ công
-    video.addEventListener("click", () => {
+    // Hỗ trợ click + touch trên mobile
+    const playVideo = () => {
       if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
+        video.play().catch((e) => console.log(e));
       }
-    });
+    };
+
+    video.addEventListener("click", playVideo);
+    video.addEventListener("touchstart", playVideo, { passive: true });
   });
 });
