@@ -54,9 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Tự động play khi scroll vào viewport - Không controls
+//video
+// Chỉ cho phép 1 video chạy cùng lúc
 document.addEventListener("DOMContentLoaded", () => {
   const videos = document.querySelectorAll(".video video");
+  let currentPlaying = null; // Video đang chạy
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -64,40 +66,53 @@ document.addEventListener("DOMContentLoaded", () => {
         const video = entry.target;
 
         if (entry.isIntersecting) {
+          // Nếu có video khác đang chạy → tắt nó
+          if (currentPlaying && currentPlaying !== video) {
+            currentPlaying.pause();
+          }
+
+          // Play video hiện tại
           video.play().catch(() => {});
+          currentPlaying = video;
         } else {
-          video.pause();
+          // Nếu video đang chạy mà ra khỏi viewport → pause
+          if (currentPlaying === video) {
+            video.pause();
+            currentPlaying = null;
+          }
         }
       });
     },
     {
-      threshold: 0.5, // 50% video hiện trên màn hình
-      rootMargin: "0px 0px -80px 0px", // Play sớm hơn một chút
+      threshold: 0.5,
+      rootMargin: "0px 0px -100px 0px",
     },
   );
 
   videos.forEach((video) => {
     observer.observe(video);
 
-    // Cho phép người dùng play/pause bằng cách chạm vào video
-    video.addEventListener("click", () => {
+    // Click / Touch để play/pause thủ công
+    const togglePlay = () => {
       if (video.paused) {
+        // Tắt video đang chạy khác
+        if (currentPlaying && currentPlaying !== video) {
+          currentPlaying.pause();
+        }
         video.play();
+        currentPlaying = video;
       } else {
         video.pause();
+        if (currentPlaying === video) currentPlaying = null;
       }
-    });
+    };
 
-    // Hỗ trợ tốt hơn trên mobile
+    video.addEventListener("click", togglePlay);
     video.addEventListener(
       "touchstart",
       (e) => {
-        e.preventDefault(); // Ngăn scroll khi chạm
-        if (video.paused) {
-          video.play();
-        } else {
-          video.pause();
-        }
+        e.preventDefault();
+        togglePlay();
       },
       { passive: false },
     );
