@@ -93,3 +93,18 @@ $("body").on("click", ".back-to-bottom", function () {
   $("html, body").animate({ scrollTop: $(document).height() }, "slow");
   return false;
 });
+
+/**/
+
+// Lấy tất cả các nút tiêu đề
+const headers = document.querySelectorAll(".accordion-header");
+
+headers.forEach((header) => {
+  header.addEventListener("click", function () {
+    // Lấy phần tử cha (accordion-item) của nút vừa nhấn
+    const item = this.parentElement;
+
+    // Toggle (Bật/Tắt) class "active"
+    item.classList.toggle("active");
+  });
+});

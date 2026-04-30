@@ -1,0 +1,79 @@
+/**/
+
+/* Ẩn nội dung mặc định */
+.scrollbox {
+  display: none;
+  overflow: hidden;
+  height: 0;
+  /* transition mượt mà cho thuộc tính height */
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-acc {
+  cursor: pointer;
+  user-select: none;
+}
+
+.container .gym {
+  text-align: left;
+}
+.container h2 {
+  text-align: center;
+  margin-bottom: 6vw;
+}
+.gym li {
+  margin-bottom: 3vw;
+}
+.gym li a {
+  display: block;
+  padding: 3vw;
+  border: 1px solid #d3c6c6;
+  border-radius: 5px;
+  color: #000;
+  font-size: 5vw;
+}
+.pages .round {
+  padding: 6vw 3vw;
+  margin-bottom: 6vw;
+  background: #dfdfdf;
+}
+.pages h3 {
+  text-align: left;
+  background: #15b7e9;
+  color: #000;
+  padding: 2vw;
+  font-size: 6vw;
+}
+.pages h4 {
+  text-align: left;
+  margin-bottom: 3vw;
+  font-size: 5vw;
+}
+.pages h5 {
+  text-align: left;
+  font-size: 4vw;
+  margin-bottom: 3vw;
+}
+
+.pages .box {
+  margin-bottom: 3vw;
+  padding: 0 3vw;
+}
+.pages .box:last-child {
+  margin-bottom: 0;
+}
+p.img {
+  margin-top: 3vw;
+}
+p.img img {
+  width: 100%;
+  height: auto;
+}
+p.video {
+  padding: 0 2vw;
+  margin-bottom: 3vw;
+}
+p.video video {
+  width: 100%;
+  height: auto;
+}
