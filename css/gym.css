@@ -1,5 +1,28 @@
 /**/
+/* Ẩn nút Play/Pause và nút tua nhanh */
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-rewind-button,
+video::-webkit-media-controls-forward-button {
+  display: none !important;
+}
 
+/* Ẩn cả progress bar nếu bạn muốn (tùy chọn) */
+video::-webkit-media-controls-timeline {
+  /* display: none !important; */ /* Bỏ comment nếu muốn ẩn thanh tua */
+}
+
+/* Tùy chỉnh cho mobile */
+video::-webkit-media-controls {
+  display: flex;
+  justify-content: center;
+}
+
+/* Làm cho nút volume và fullscreen vẫn hiện */
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-fullscreen-button {
+  display: inline-block;
+}
 /* Ẩn nội dung mặc định */
 .scrollbox {
   display: none;
