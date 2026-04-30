@@ -55,10 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //video
-// Chỉ 1 video chạy + không cho tương tác chạm play/pause
+// Mỗi video tự play khi scroll đến - Không tương tác chạm
 document.addEventListener("DOMContentLoaded", () => {
   const videos = document.querySelectorAll(".video video");
-  let currentPlaying = null;
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -66,33 +65,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const video = entry.target;
 
         if (entry.isIntersecting) {
-          // Tắt video đang chạy trước đó
-          if (currentPlaying && currentPlaying !== video) {
-            currentPlaying.pause();
-          }
-
-          // Play video hiện tại
           video.play().catch(() => {});
-          currentPlaying = video;
         } else {
-          // Video ra khỏi viewport → pause nếu đang chạy
-          if (currentPlaying === video) {
-            video.pause();
-            currentPlaying = null;
-          }
+          video.pause();
         }
       });
     },
     {
-      threshold: 0.5, // Có thể chỉnh thành 0.4 hoặc 0.6
-      rootMargin: "0px 0px -100px 0px",
+      threshold: 0.5, // 50% video hiện mới play
+      rootMargin: "0px 0px -100px 0px", // Play sớm hơn một chút
     },
   );
 
   videos.forEach((video) => {
     observer.observe(video);
 
-    // === TẮT HOÀN TOÀN TƯƠNG TÁC ===
-    video.style.pointerEvents = "none"; // Quan trọng nhất
+    // Tắt hoàn toàn tương tác chạm (chỉ để lướt trang)
+    video.style.pointerEvents = "none";
   });
 });
