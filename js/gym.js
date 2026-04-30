@@ -55,10 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //video
-// Chỉ cho phép 1 video chạy cùng lúc
+// Chỉ 1 video chạy + không cho tương tác chạm play/pause
 document.addEventListener("DOMContentLoaded", () => {
   const videos = document.querySelectorAll(".video video");
-  let currentPlaying = null; // Video đang chạy
+  let currentPlaying = null;
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const video = entry.target;
 
         if (entry.isIntersecting) {
-          // Nếu có video khác đang chạy → tắt nó
+          // Tắt video đang chạy trước đó
           if (currentPlaying && currentPlaying !== video) {
             currentPlaying.pause();
           }
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
           video.play().catch(() => {});
           currentPlaying = video;
         } else {
-          // Nếu video đang chạy mà ra khỏi viewport → pause
+          // Video ra khỏi viewport → pause nếu đang chạy
           if (currentPlaying === video) {
             video.pause();
             currentPlaying = null;
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     },
     {
-      threshold: 0.5,
+      threshold: 0.5, // Có thể chỉnh thành 0.4 hoặc 0.6
       rootMargin: "0px 0px -100px 0px",
     },
   );
@@ -92,29 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
   videos.forEach((video) => {
     observer.observe(video);
 
-    // Click / Touch để play/pause thủ công
-    const togglePlay = () => {
-      if (video.paused) {
-        // Tắt video đang chạy khác
-        if (currentPlaying && currentPlaying !== video) {
-          currentPlaying.pause();
-        }
-        video.play();
-        currentPlaying = video;
-      } else {
-        video.pause();
-        if (currentPlaying === video) currentPlaying = null;
-      }
-    };
-
-    video.addEventListener("click", togglePlay);
-    video.addEventListener(
-      "touchstart",
-      (e) => {
-        e.preventDefault();
-        togglePlay();
-      },
-      { passive: false },
-    );
+    // === TẮT HOÀN TOÀN TƯƠNG TÁC ===
+    video.style.pointerEvents = "none"; // Quan trọng nhất
   });
 });
